@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base_fd.c                                :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 11:32:16 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/16 09:12:26 by aderouba         ###   ########.fr       */
+/*   Created: 2022/11/16 09:55:26 by aderouba          #+#    #+#             */
+/*   Updated: 2022/11/16 10:11:19 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	recursive_print(long n, int fd, char *base, int base_len)
+int	ft_pow(int nb, int power)
 {
-	if (n >= base_len)
-		recursive_print(n / base_len, fd, base, base_len);
-	ft_putchar_fd(base[n % base_len], fd);
-}
+	int	res;
 
-void	ft_putnbr_base_fd(int n, int fd, char *base)
-{
-	long	nb;
-	int		base_len;
-
-	base_len = ft_strlen(base);
-	if (base_len <= 1)
-		return ;
-	nb = n;
-	if (nb < 0)
+	if (power < 0)
+		return (0);
+	res = 1;
+	if (power > 0)
 	{
-		nb *= -1;
-		ft_putchar_fd('-', fd);
+		power --;
+		res = nb * ft_pow(nb, power);
 	}
-	recursive_print(nb, fd, base, base_len);
+	return (res);
 }

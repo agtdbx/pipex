@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base_fd.c                                :+:      :+:    :+:   */
+/*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:32:16 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/16 09:12:26 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/16 09:07:54 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	recursive_print(long n, int fd, char *base, int base_len)
+void	ft_putunbr_fd(unsigned int n, int fd)
 {
-	if (n >= base_len)
-		recursive_print(n / base_len, fd, base, base_len);
-	ft_putchar_fd(base[n % base_len], fd);
-}
-
-void	ft_putnbr_base_fd(int n, int fd, char *base)
-{
-	long	nb;
-	int		base_len;
-
-	base_len = ft_strlen(base);
-	if (base_len <= 1)
-		return ;
-	nb = n;
-	if (nb < 0)
-	{
-		nb *= -1;
-		ft_putchar_fd('-', fd);
-	}
-	recursive_print(nb, fd, base, base_len);
+	if (n >= 10)
+		ft_putunbr_fd(n / 10, fd);
+	ft_putchar_fd(n % 10 + '0', fd);;
 }

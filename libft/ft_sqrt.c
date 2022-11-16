@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base_fd.c                                :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 11:32:16 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/16 09:12:26 by aderouba         ###   ########.fr       */
+/*   Created: 2022/11/16 10:15:53 by aderouba          #+#    #+#             */
+/*   Updated: 2022/11/16 10:27:37 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	recursive_print(long n, int fd, char *base, int base_len)
+double	ft_sqrt(double nb)
 {
-	if (n >= base_len)
-		recursive_print(n / base_len, fd, base, base_len);
-	ft_putchar_fd(base[n % base_len], fd);
-}
+	double	tmp;
+	double	res;
 
-void	ft_putnbr_base_fd(int n, int fd, char *base)
-{
-	long	nb;
-	int		base_len;
-
-	base_len = ft_strlen(base);
-	if (base_len <= 1)
-		return ;
-	nb = n;
-	if (nb < 0)
+	if (nb <= 0.0)
+		return (0.0);
+	tmp = 0.0;
+	res = nb / 2.0;
+	while (res != tmp)
 	{
-		nb *= -1;
-		ft_putchar_fd('-', fd);
+		tmp = res;
+		res = (nb / tmp + tmp) / 2;
 	}
-	recursive_print(nb, fd, base, base_len);
+	return (res);
 }

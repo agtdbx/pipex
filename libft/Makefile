@@ -6,20 +6,25 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 12:24:51 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/15 13:35:59 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/16 11:07:47 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRC =	ft_atoi.c \
+SRC =	ft_atof.c \
+		ft_atoi_base.c \
+		ft_atoi.c \
 		ft_bzero.c \
 		ft_calloc.c \
+		ft_ftoa.c \
 		ft_isalnum.c \
 		ft_isalpha.c \
 		ft_isascii.c \
 		ft_isdigit.c \
+		ft_isprime.c \
 		ft_isprint.c \
+		ft_itoa_base.c \
 		ft_itoa.c \
 		ft_lstadd_back.c \
 		ft_lstadd_front.c \
@@ -35,18 +40,23 @@ SRC =	ft_atoi.c \
 		ft_memcpy.c \
 		ft_memmove.c \
 		ft_memset.c \
+		ft_pow.c \
 		ft_putchar_fd.c \
 		ft_putendl_fd.c \
 		ft_putnbr_base_fd.c \
 		ft_putnbr_fd.c \
 		ft_putstr_fd.c \
+		ft_putunbr_base_fd.c \
+		ft_putunbr_fd.c \
 		ft_split.c \
+		ft_sqrt.c \
 		ft_strcat.c \
 		ft_strchr.c \
 		ft_strcmp.c \
 		ft_strcpy.c \
 		ft_strdup.c \
 		ft_striteri.c \
+		ft_strjoin_free_1st_p.c \
 		ft_strjoin.c \
 		ft_strlcat.c \
 		ft_strlcpy.c \
@@ -61,8 +71,6 @@ SRC =	ft_atoi.c \
 		ft_tolower.c \
 		ft_toupper.c \
 		gnl.c \
-		printf_utils1.c \
-		printf_utils2.c \
 		printf.c
 
 OBJ = ${SRC:.c=.o}
@@ -72,18 +80,24 @@ CFLAGS = -g -Wall -Wextra -Werror
 INCLUDE = -I .
 
 %.o : %.c
-	$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDE)
+	@$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDE)
 
 $(NAME) : $(OBJ)
-	ar cr $@ $^
+	@echo "╔═══════════════╗"
+	@echo "║Compiling libft║"
+	@echo "╚═══════════════╝"
+	@ar cr $@ $^
 
 all : $(NAME)
 
 clean :
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean : clean
-	rm -f $(NAME)
+	@echo "╔══════════════╗"
+	@echo "║Cleaning libft║"
+	@echo "╚══════════════╝"
+	@rm -f $(NAME)
 
 re : fclean $(NAME)
 

@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base_fd.c                                :+:      :+:    :+:   */
+/*   ft_strjoin_free_1st_p.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 11:32:16 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/16 09:12:26 by aderouba         ###   ########.fr       */
+/*   Created: 2022/09/29 14:02:17 by aderouba          #+#    #+#             */
+/*   Updated: 2022/11/16 10:46:40 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	recursive_print(long n, int fd, char *base, int base_len)
+char	*ft_strjoin_free_1st_p(char *s1, char *s2)
 {
-	if (n >= base_len)
-		recursive_print(n / base_len, fd, base, base_len);
-	ft_putchar_fd(base[n % base_len], fd);
-}
+	int		i;
+	int		j;
+	char	*res;
 
-void	ft_putnbr_base_fd(int n, int fd, char *base)
-{
-	long	nb;
-	int		base_len;
-
-	base_len = ft_strlen(base);
-	if (base_len <= 1)
-		return ;
-	nb = n;
-	if (nb < 0)
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	res = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (res == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
 	{
-		nb *= -1;
-		ft_putchar_fd('-', fd);
+		res[i] = s1[i];
+		i++;
 	}
-	recursive_print(nb, fd, base, base_len);
+	j = 0;
+	while (s2[j] != '\0')
+	{
+		res[i + j] = s2[j];
+		j++;
+	}
+	res[i + j] = '\0';
+	free(s1);
+	return (res);
 }

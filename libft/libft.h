@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:33:14 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/15 13:39:05 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:40:37 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 128
-# endif
 
 typedef struct s_list
 {
@@ -39,7 +35,6 @@ int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
-
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 
@@ -74,7 +69,16 @@ void	ft_bzero(void *s, int n);
 
 // number
 int		ft_atoi(const char *nptr);
+float	ft_atof(const char *nptr);
+int		ft_atoi_base(const char *nptr, char *base);
 char	*ft_itoa(int n);
+char	*ft_ftoa(float n);
+char	*ft_itoa_base(int n, char *base);
+
+// math
+int		ft_isprime(int nb);
+int		ft_pow(int nb, int p);
+double	ft_sqrt(double nb);
 
 // alloc
 void	*ft_calloc(int nmemb, int size);
@@ -84,7 +88,9 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+void	ft_putunbr_fd(unsigned int n, int fd);
 void	ft_putnbr_base_fd(int n, int fd, char *base);
+void	ft_putunbr_base_fd(unsigned int n, int fd, char *base);
 
 // chain list
 int		ft_lstsize(t_list *lst);
@@ -101,16 +107,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*get_next_line(int fd);
 
 // printf
-void	ft_print_char(char c, int *nb_char_print);
-void	ft_print_string(char *str, int *nb_char_print);
-void	ft_print_int(int nb, int *nb_char_print);
-void	print_uint(unsigned int nb);
-void	ft_print_uint(unsigned int nb, int *nb_char_print);
-void	print_hex(unsigned int nb, char *base);
-char	*itoa_hex(size_t nb, char *base, char *str);
-void	ft_print_lowerhex(unsigned int nb, int *nb_char_print);
-void	ft_print_upperhex(unsigned int nb, int *nb_char_print);
-void	ft_print_pointer(void *p, int *nb_char_print);
-void	print_param(char pc, char c, va_list args, int *nb_char_print);
-int		ft_printf(const char *str, ...);
+void	ft_printf(const char *str, ...);
+
 #endif

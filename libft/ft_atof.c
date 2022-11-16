@@ -1,40 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 14:02:17 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/16 10:46:29 by aderouba         ###   ########.fr       */
+/*   Created: 2022/09/27 15:14:19 by aderouba          #+#    #+#             */
+/*   Updated: 2022/11/16 10:05:31 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+float	get_dec_part(const char *nptr, int neg)
 {
 	int		i;
 	int		j;
-	char	*res;
+	float	res;
 
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	res = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (res == NULL)
-		return (NULL);
 	i = 0;
-	while (s1[i] != '\0')
-	{
-		res[i] = s1[i];
+	while (nptr[i] != '.' && nptr[i] != '\0')
 		i++;
-	}
+	if (nptr[i] != '.')
+		return (0.0);
+	i++;
 	j = 0;
-	while (s2[j] != '\0')
+	res = 0.0;
+	while (nptr[i + j] != '\0')
 	{
-		res[i + j] = s2[j];
+		res = res * 10.0 + (float)(nptr[i + j] - '0');
 		j++;
 	}
-	res[i + j] = '\0';
+	while (j > 0)
+	{
+		res /= 10.0;
+		j--;
+	}
+	if (neg)
+		res *= -1.0;
+	return (res);
+}
+
+float	ft_atof(const char *nptr)
+{
+	int		intpart;
+	float	res;
+
+	intpart = ft_atoi(nptr);
+	res = (float)intpart;
+	res += get_dec_part(nptr, res < 0);
 	return (res);
 }
