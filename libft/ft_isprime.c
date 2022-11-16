@@ -6,13 +6,13 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 10:29:03 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/16 10:30:35 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:09:45 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isprime(int nb)
+int	ft_isprime(int nb)
 {
 	int	rep;
 
