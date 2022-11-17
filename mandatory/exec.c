@@ -6,28 +6,35 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:32:25 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/17 13:32:52 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:38:58 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-void	frist_exec_command(char **envp, char **arg, int *filefd, int *pipfd)
+void	frist_exec_command(char **envp, char ***args, int i, int **fds)
 {
 	int	cpid;
 
 	cpid = fork();
 	if (cpid == 0)
 	{
-		dup2(filefd[0], STDIN_FILENO);
-		dup2(pipfd[1], STDOUT_FILENO);
-		close(pipfd[0]);
-		close(pipfd[1]);
-		execve(arg[0], arg, envp);
+		if (fds[0][0] != -1)
+			dup2(fds[0][0], STDIN_FILENO);
+		dup2(fds[1][1], STDOUT_FILENO);
+		close(fds[1][0]);
+		close(fds[1][1]);
+		if (args[i][0] == NULL)
+		{
+			one_free_all(fds[1], fds[0], args);
+			exit(0);
+		}
+		else
+			execve(args[i][0], args[i], envp);
 	}
 }
 
-void	exec_command(char **envp, char **arg, int *pipfd1, int *pipfd2)
+/*void	exec_command(char **envp, char ***args, int i, int **fds)
 {
 	int	cpid;
 
@@ -40,21 +47,34 @@ void	exec_command(char **envp, char **arg, int *pipfd1, int *pipfd2)
 		close(pipfd1[1]);
 		close(pipfd2[0]);
 		close(pipfd2[1]);
-		execve(arg[0], arg, envp);
+		if (args[i][0] == NULL)
+		{
+			one_free_all(pipfd, filefd, args);
+			exit(0);
+		}
+		else
+			execve(args[i][0], arg, envp);
 	}
-}
+}*/
 
-void	last_exec_command(char **envp, char **arg, int *filefd, int *pipfd)
+void	last_exec_command(char **envp, char ***args, int i, int **fds)
 {
 	int	cpid;
 
 	cpid = fork();
 	if (cpid == 0)
 	{
-		dup2(pipfd[0], STDIN_FILENO);
-		dup2(filefd[1], STDOUT_FILENO);
-		close(pipfd[0]);
-		close(pipfd[1]);
-		execve(arg[0], arg, envp);
+		dup2(fds[1][0], STDIN_FILENO);
+		if (fds[0][1] != -1)
+			dup2(fds[0][1], STDOUT_FILENO);
+		close(fds[1][0]);
+		close(fds[1][1]);
+		if (args[i][0] == NULL)
+		{
+			one_free_all(fds[1], fds[0], args);
+			exit(0);
+		}
+		else
+			execve(args[i][0], args[i], envp);
 	}
 }

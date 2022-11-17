@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:38:57 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/17 13:43:45 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:35:04 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,13 @@ char	*get_command_path(char **paths, char *command)
 	return (NULL);
 }
 
-int	is_bad_command_path(char *command_path, char **split_res, char **res)
+int	is_bad_command_path(char *command_path, char **split_res)
 {
 	if (command_path == NULL)
 	{
 		ft_putstr_fd("Command not found : ", 2);
 		ft_putendl_fd(split_res[0], 2);
 		ft_lstr_free(split_res);
-		ft_lstr_free(res);
 		return (1);
 	}
 	return (0);
@@ -56,8 +55,8 @@ char	**get_arg(char **paths, char *str)
 	res[0] = NULL;
 	split_res = ft_split(str, ' ');
 	command_path = get_command_path(paths, split_res[0]);
-	if (is_bad_command_path(command_path, split_res, res))
-		return (NULL);
+	if (is_bad_command_path(command_path, split_res))
+		return (res);
 	res = ft_add_str(res, command_path);
 	i = 1;
 	while (split_res && split_res[i])
