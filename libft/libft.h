@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:33:14 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/16 10:40:37 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/17 08:54:51 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ int		ft_strcpy(char *dst, const char *src);
 int		ft_strlcpy(char *dst, const char *src, int size);
 int		ft_strcat(char *dst, const char *src);
 int		ft_strlcat(char *dst, const char *src, int size);
+
+// list string
+char	**ft_add_str(char **lstr, char *str);
+void	ft_put_lstr_fd(char **lstr, int fd);
+void	ft_lstr_free(char **lstr);
 
 // memory
 void	*ft_memset(void *s, int c, int n);

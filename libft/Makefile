@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 12:24:51 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/16 11:07:47 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/17 08:56:54 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC =	ft_atof.c \
 		ft_lstlast.c \
 		ft_lstmap.c \
 		ft_lstnew.c \
+		ft_lstr.c \
 		ft_lstsize.c \
 		ft_memchr.c \
 		ft_memcmp.c \

@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 16:15:35 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/16 11:07:19 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/17 13:45:06 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,15 @@ MAKEFLAGS = --no-print-directory
 
 NAME = pipex
 
-SRC =	mandatory/pipex.c
+SRC =	mandatory/pipex.c \
+		mandatory/exec.c \
+		mandatory/arg.c \
+		mandatory/args.c
 
 OBJ = ${SRC:.c=.o}
 
 CC = clang
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 LIBFTFLAGS = -Llibft -lft
 INCLUDES = -I. -Ilibft
 
