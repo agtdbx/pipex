@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 16:15:35 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/17 13:45:06 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/17 17:05:24 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,17 @@ SRC =	mandatory/pipex.c \
 		mandatory/arg.c \
 		mandatory/args.c
 
+SRC_BONUS =	bonus/pipex_bonus.c \
+			bonus/exec_bonus.c \
+			bonus/arg_bonus.c \
+			bonus/args_bonus.c
+
+ifdef BONUS
+	SRC = $(SRC_BONUS)
+endif
+
 OBJ = ${SRC:.c=.o}
+OBJ_BONUS = ${SRC_BONUS:.c=.o}
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -g
@@ -40,7 +50,7 @@ all : $(NAME)
 
 clean :
 	@cd libft && make clean
-	@rm -f $(OBJ)
+	@rm -f $(OBJ) $(OBJ_BONUS)
 
 fclean : clean
 	@cd libft && make fclean
@@ -52,4 +62,7 @@ fclean : clean
 re : fclean $(NAME)
 	@cd libft && make re
 
-.PHONY: all clean fclean re
+bonus :
+	@make BONUS=42
+
+.PHONY: all clean fclean re bonus
