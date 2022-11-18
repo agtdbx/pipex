@@ -6,22 +6,21 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:22 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 14:41:38 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:06:37 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <sys/wait.h>
 
 // pipex.c
-int		*get_filefd(int argc, char **argv, char ***args);
 void	one_free_all(int **fds, char ***args);
-int		**get_fds(int *filefd);
-void	pipex(char **envp, char ***args, int **fds);
+void	pipex(char **envp, char ***args, int **fds, int here_doc);
+void	check_arguments(int argc, int here_doc);
 int		main(int argc, char **argv, char **envp);
 
 // exec.c
@@ -39,6 +38,12 @@ char	***add_arg(char ***args, char **arg);
 // args.c
 char	**get_paths(char **envp);
 void	free_args(char ***lstr);
-char	***get_args(int argc, char **argv, char **envp);
+char	***get_args(int argc, char **argv, char **envp, int here_doc);
+
+// fd.c
+void	write_in_here_doc_file(int fd, char *limiter);
+int		*get_filefd_here_doc(int argc, char **argv);
+int		*get_filefd(int argc, char **argv, char ***args);
+int		**get_fds(int *filefd);
 
 #endif

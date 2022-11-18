@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:44:52 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/17 15:50:45 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:20:41 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	free_args(char ***lstr)
 		free(lstr);
 }
 
-char	***get_args(int argc, char **argv, char **envp)
+char	***get_args(int argc, char **argv, char **envp, int here_doc)
 {
 	int		i;
 	char	**paths;
@@ -64,7 +64,7 @@ char	***get_args(int argc, char **argv, char **envp)
 	if (!res)
 		return (NULL);
 	res[0] = NULL;
-	i = 2;
+	i = 2 + here_doc;
 	while (i < argc - 1)
 	{
 		tmp = get_arg(paths, argv[i]);

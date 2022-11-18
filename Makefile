@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 16:15:35 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/17 17:05:24 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/18 17:07:03 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC =	mandatory/pipex.c \
 SRC_BONUS =	bonus/pipex_bonus.c \
 			bonus/exec_bonus.c \
 			bonus/arg_bonus.c \
-			bonus/args_bonus.c
+			bonus/args_bonus.c \
+			bonus/fd.c
 
 ifdef BONUS
 	SRC = $(SRC_BONUS)
