@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:22 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/17 17:53:34 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 08:43:05 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	one_free_all(int **fds, char ***args);
 int		main(int argc, char **argv, char **envp);
 
 // exec.c
-int	first_exec_command(char **envp, char ***args, int i, int **fds);
-int	exec_command(char **envp, char ***args, int i, int **fds);
-int	last_exec_command(char **envp, char ***args, int i, int **fds);
+void	first_exec_command(char **envp, char ***args, int i, int **fds);
+void	exec_command(char **envp, char ***args, int i, int **fds);
+void	last_exec_command(char **envp, char ***args, int i, int **fds);
 
 // arg.c
 char	*get_command_path(char **paths, char *command);

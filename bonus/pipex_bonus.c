@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:05 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/17 18:13:31 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 09:12:54 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	pipex(char **envp, char ***args, int **fds)
 			last_exec_command(envp, args, i, fds);
 		else
 			exec_command(envp, args, i, fds);
-		//waitpid(cpid, &status, 0);
 		i++;
 	}
 }
