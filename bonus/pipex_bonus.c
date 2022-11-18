@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:05 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 18:08:56 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:10:57 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int	main(int argc, char **argv, char **envp)
 		filefd = get_filefd(argc, argv, args);
 	if (filefd == NULL)
 	{
-		ft_printf("TEST\n");
 		one_free_all(NULL, args);
 		return (1);
 	}
