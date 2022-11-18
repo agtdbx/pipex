@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:32:25 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 12:08:28 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:51:30 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	middle_exec_command(char **envp, char ***args, int i, int **fds)
 
 	in_i = (i % 2 == 0) + 1;
 	out_i = (i % 2 == 1) + 1;
-	ft_printf("in : %i, out : %i\n", in_i, out_i);
 	cpid = fork();
 	if (cpid == 0)
 	{
@@ -61,7 +60,7 @@ void	middle_exec_command(char **envp, char ***args, int i, int **fds)
 		else
 			execve(args[i][0], args[i], envp);
 	}
-	close(fds[2][1]);
+	close(fds[out_i][1]);
 	close(fds[in_i][0]);
 	waitpid(cpid, NULL, 0);
 }
@@ -72,7 +71,6 @@ void	last_exec_command(char **envp, char ***args, int i, int **fds)
 	int	out_i;
 
 	out_i = (i % 2 == 0) + 1;
-	ft_printf("out : %i\n", out_i);
 	cpid = fork();
 	if (cpid == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:05 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 12:21:40 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:53:41 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,10 @@ void	pipex(char **envp, char ***args, int **fds)
 	i = 0;
 	while (args[i])
 	{
-		ft_printf("\nI %i\n", i);
 		if (i % 2 == 0 && i > 1)
-		{
-			ft_printf("NEW PIPE 1\n");
 			pipe(fds[1]);
-		}
 		else if (i % 2 == 1 && i > 1)
-		{
-			ft_printf("NEW PIPE 2\n");
 			pipe(fds[2]);
-		}
 		if (i == 0)
 			first_exec_command(envp, args, i, fds);
 		else if (!args[i + 1])
