@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:38:57 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/17 14:35:04 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:49:20 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	**get_arg(char **paths, char *str)
 	res[0] = NULL;
 	split_res = ft_split(str, ' ');
 	command_path = get_command_path(paths, split_res[0]);
-	if (is_bad_command_path(command_path, split_res))
+	if (is_bad_command_path(command_path, split_res) || ft_strlen(str) == 0)
 		return (res);
 	res = ft_add_str(res, command_path);
 	i = 1;

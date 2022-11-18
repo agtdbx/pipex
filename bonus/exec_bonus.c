@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:32:25 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 17:07:17 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:48:23 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	close_fds(int **fds)
 {
-	close(fds[0][0]);
-	close(fds[0][1]);
+	if (fds[0][0] != -1)
+		close(fds[0][0]);
+	if (fds[0][1] != -1)
+		close(fds[0][1]);
 	close(fds[1][0]);
 	close(fds[1][1]);
 	close(fds[2][0]);

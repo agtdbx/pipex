@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:53:10 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 17:21:30 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:46:47 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	*get_filefd_here_doc(int argc, char **argv)
 	if (!filefd)
 		return (NULL);
 	unlink(".heredoc");
-	tmp = open(".heredoc", O_RDWR | O_TRUNC | O_CREAT, 0777);
+	tmp = open(".heredoc", O_RDWR | O_TRUNC | O_CREAT, 0644);
 	write_in_here_doc_file(tmp, argv[2]);
 	close(tmp);
 	filefd[0] = open(".heredoc", O_RDONLY);
@@ -73,7 +73,7 @@ int	*get_filefd(int argc, char **argv, char ***args)
 	filefd[0] = open(argv[1], O_RDONLY);
 	if (filefd[0] == -1 || open(argv[1], O_DIRECTORY) != -1)
 		args[0] = ft_add_str(args[0], ft_strdup(argv[1]));
-	filefd[1] = open(argv[argc - 1], O_RDWR | O_TRUNC | O_CREAT);
+	filefd[1] = open(argv[argc - 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (filefd[1] == -1 || open(argv[argc - 1], O_DIRECTORY) != -1)
 	{
 		close(filefd[0]);
