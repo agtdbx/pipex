@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:22 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/17 17:11:22 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:03:57 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 // pipex.c
 int		*get_filefd(int argc, char **argv, char ***args);
 void	one_free_all(int *pipfd, int *filefd, char ***args);
+void	check_arguments(int argc, char **argv);
+void	pipex(char **envp, char ***args, int *filefd, int *pipfd);
 int		main(int argc, char **argv, char **envp);
 
 // exec.c

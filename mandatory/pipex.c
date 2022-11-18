@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:05 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/17 17:11:38 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:03:11 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,34 @@ void	pipex(char **envp, char ***args, int *filefd, int *pipfd)
 	last_exec_command(envp, args, 1, fds);
 }
 
+void	check_arguments(int argc, char **argv)
+{
+	int	i;
+	int	error;
+
+	i = 0;
+	error = 0;
+	while (i < argc)
+	{
+		if (ft_strlen(argv[i]) == 0)
+			error = 1;
+		i++;
+	}
+	if (argc < 5 || error)
+	{
+		ft_putendl_fd("Ivalid arguments", 2);
+		ft_putendl_fd("Usage : ./pipex file1 \"cmd1\" \"cmd2\" file2", 2);
+		exit(1);
+	}
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	***args;
 	int		*filefd;
 	int		pipfd[2];
 
-	if (argc != 5)
-	{
-		ft_putendl_fd("Ivalid arguments", 2);
-		ft_putendl_fd("Usage : ./pipex file1 \"cmd1\" \"cmd2\" file2", 2);
-		return (1);
-	}
+	check_arguments(argc, argv);
 	if (pipe(pipfd) == -1)
 		return (1);
 	args = get_args(argc, argv, envp);
