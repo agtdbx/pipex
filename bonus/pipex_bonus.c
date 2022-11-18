@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:05 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 17:51:18 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:59:24 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,27 @@ void	pipex(char **envp, char ***args, int **fds, int here_doc)
 	}
 }
 
-void	check_arguments(int argc, int here_doc)
+void	check_arguments(int argc, char **argv, int here_doc)
 {
-	if (here_doc && argc < 6)
+	int	i;
+	int	error;
+
+	i = 0;
+	error = 0;
+	while (i < argc)
+	{
+		if (ft_strlen(argv[i]) == 0)
+			error = 1;
+		i++;
+	}
+	if (here_doc && (argc < 6 || error))
 	{
 		ft_putendl_fd("Not engouh arguments", 2);
 		ft_putstr_fd("Usage : ./pipex here_doc limiter \"cmd1\"", 2);
 		ft_putendl_fd(" ... \"cmdn\" file2", 2);
 		exit(1);
 	}
-	else if (argc < 5)
+	else if (argc < 5 || error)
 	{
 		ft_putendl_fd("Not engouh arguments", 2);
 		ft_putendl_fd("Usage : ./pipex file1 \"cmd1\" ... \"cmdn\" file2", 2);
