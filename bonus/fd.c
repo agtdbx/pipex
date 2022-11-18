@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:53:10 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 17:46:47 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:10:16 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	*get_filefd_here_doc(int argc, char **argv)
 		ft_putstr_fd(argv[argc - 1], 2);
 		ft_putendl_fd("' not found", 2);
 		free(filefd);
-		exit(1);
+		return (NULL);
 	}
 	return (filefd);
 }
@@ -81,7 +81,7 @@ int	*get_filefd(int argc, char **argv, char ***args)
 		ft_putstr_fd(argv[argc - 1], 2);
 		ft_putendl_fd("' not found", 2);
 		free(filefd);
-		exit(1);
+		return (NULL);
 	}
 	return (filefd);
 }
