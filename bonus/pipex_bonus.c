@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:05 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 17:59:24 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:00:05 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int argc, char **argv, char **envp)
 	here_doc = 0;
 	if (ft_strcmp(argv[1], "here_doc") == 0)
 		here_doc = 1;
-	check_arguments(argc, here_doc);
+	check_arguments(argc, argv, here_doc);
 	args = get_args(argc, argv, envp, here_doc);
 	if (here_doc)
 		filefd = get_filefd_here_doc(argc, argv);
