@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:05 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 09:12:54 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 12:21:40 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	one_free_all(int **fds, char ***args)
 	int	i;
 
 	i = 0;
-	while (fds && fds[i])
+	while (fds && i < 3)
 	{
 		close(fds[i][0]);
 		close(fds[i][1]);
@@ -52,6 +52,30 @@ void	one_free_all(int **fds, char ***args)
 	free_args(args);
 }
 
+int	**get_fds(int *filefd)
+{
+	int	**fds;
+
+	fds = malloc(sizeof(int *) * 3);
+	if (!fds)
+		return (NULL);
+	fds[0] = filefd;
+
+	fds[1] = malloc(sizeof(int) * 2);
+	if (!fds[1])
+		return (NULL);
+	if (pipe(fds[1]) == -1)
+		return (NULL);
+
+	fds[2] = malloc(sizeof(int) * 2);
+	if (!fds[2])
+		return (NULL);
+	if (pipe(fds[2]) == -1)
+		return (NULL);
+
+	return (fds);
+}
+
 void	pipex(char **envp, char ***args, int **fds)
 {
 	int	i;
@@ -59,41 +83,25 @@ void	pipex(char **envp, char ***args, int **fds)
 	i = 0;
 	while (args[i])
 	{
+		ft_printf("\nI %i\n", i);
+		if (i % 2 == 0 && i > 1)
+		{
+			ft_printf("NEW PIPE 1\n");
+			pipe(fds[1]);
+		}
+		else if (i % 2 == 1 && i > 1)
+		{
+			ft_printf("NEW PIPE 2\n");
+			pipe(fds[2]);
+		}
 		if (i == 0)
 			first_exec_command(envp, args, i, fds);
 		else if (!args[i + 1])
 			last_exec_command(envp, args, i, fds);
 		else
-			exec_command(envp, args, i, fds);
+			middle_exec_command(envp, args, i, fds);
 		i++;
 	}
-}
-
-int	**get_fds(char ***args, int *filefd)
-{
-	int	**fds;
-	int	len;
-	int	i;
-
-	len = 0;
-	while (args[len])
-		len++;
-	fds = malloc(sizeof(int *) * (len + 1));
-	if (!fds)
-		return (NULL);
-	fds[0] = filefd;
-	i = 1;
-	while (i < len)
-	{
-		fds[i] = malloc(sizeof(int) * 2);
-		if (!fds[i])
-			return (NULL);
-		if (pipe(fds[i]) == -1)
-			return (NULL);
-		i++;
-	}
-	fds[len] = NULL;
-	return (fds);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -115,7 +123,7 @@ int	main(int argc, char **argv, char **envp)
 		one_free_all(NULL, args);
 		return (1);
 	}
-	fds = get_fds(args, filefd);
+	fds = get_fds(filefd);
 	pipex(envp, args, fds);
 	one_free_all(fds, args);
 	return (0);
