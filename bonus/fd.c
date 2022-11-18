@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:53:10 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 17:11:44 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:21:30 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	*get_filefd_here_doc(int argc, char **argv)
 	filefd = malloc(sizeof(int) * 2);
 	if (!filefd)
 		return (NULL);
+	unlink(".heredoc");
 	tmp = open(".heredoc", O_RDWR | O_TRUNC | O_CREAT, 0777);
 	write_in_here_doc_file(tmp, argv[2]);
 	close(tmp);
