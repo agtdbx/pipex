@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:05 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/21 08:39:47 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/21 08:52:43 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,17 @@ int	*get_filefd(int argc, char **argv, char ***args)
 		return (NULL);
 	filefd[0] = open(argv[1], O_RDONLY);
 	if (filefd[0] == -1 || open(argv[1], O_DIRECTORY) != -1)
+	{
 		args[0] = ft_add_str(args[0], ft_strdup(argv[1]));
-	filefd[1] = open(argv[argc - 1], O_RDWR | O_TRUNC | O_CREAT);
+		ft_putstr_fd("File '", 2);
+		ft_putstr_fd(argv[1], 2);
+		ft_putendl_fd("' not found", 2);
+	}
+	filefd[1] = open(argv[argc - 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (filefd[1] == -1 || open(argv[argc - 1], O_DIRECTORY) != -1)
 	{
-		close(filefd[0]);
+		if (filefd[0] != -1)
+			close(filefd[0]);
 		ft_putstr_fd("File '", 2);
 		ft_putstr_fd(argv[argc - 1], 2);
 		ft_putendl_fd("' not found", 2);
@@ -41,11 +47,14 @@ void	one_free_all(int *pipfd, int *filefd, char ***args)
 		close(pipfd[0]);
 	if (pipfd[0] != -1)
 		close(pipfd[1]);
-	if (filefd[0] != -1)
-		close(filefd[0]);
-	if (filefd[1] != -1)
-		close(filefd[1]);
-	free(filefd);
+	if (filefd)
+	{
+		if (filefd[0] != -1)
+			close(filefd[0]);
+		if (filefd[1] != -1)
+			close(filefd[1]);
+		free(filefd);
+	}
 	free_args(args);
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fd.c                                               :+:      :+:    :+:   */
+/*   fd_bonus.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:53:10 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 18:10:16 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/21 08:52:35 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ int	*get_filefd_here_doc(int argc, char **argv)
 	write_in_here_doc_file(tmp, argv[2]);
 	close(tmp);
 	filefd[0] = open(".heredoc", O_RDONLY);
-	filefd[1] = open(argv[argc - 1], O_RDWR | O_APPEND | O_CREAT);
+	filefd[1] = open(argv[argc - 1], O_RDWR | O_APPEND | O_CREAT, 0644);
 	if (filefd[1] == -1 || open(argv[argc - 1], O_DIRECTORY) != -1)
 	{
-		close(filefd[0]);
+		if (filefd[0] != -1)
+			close(filefd[0]);
 		ft_putstr_fd("File '", 2);
 		ft_putstr_fd(argv[argc - 1], 2);
 		ft_putendl_fd("' not found", 2);
@@ -72,11 +73,17 @@ int	*get_filefd(int argc, char **argv, char ***args)
 		return (NULL);
 	filefd[0] = open(argv[1], O_RDONLY);
 	if (filefd[0] == -1 || open(argv[1], O_DIRECTORY) != -1)
+	{
 		args[0] = ft_add_str(args[0], ft_strdup(argv[1]));
+		ft_putstr_fd("File '", 2);
+		ft_putstr_fd(argv[1], 2);
+		ft_putendl_fd("' not found", 2);
+	}
 	filefd[1] = open(argv[argc - 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (filefd[1] == -1 || open(argv[argc - 1], O_DIRECTORY) != -1)
 	{
-		close(filefd[0]);
+		if (filefd[0] != -1)
+			close(filefd[0]);
 		ft_putstr_fd("File '", 2);
 		ft_putstr_fd(argv[argc - 1], 2);
 		ft_putendl_fd("' not found", 2);

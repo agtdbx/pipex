@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:32:25 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 14:58:10 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/21 08:44:44 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void	first_exec_command(char **envp, char ***args, int i, int **fds)
 		if (fds[0][0] != -1)
 			dup2(fds[0][0], STDIN_FILENO);
 		dup2(fds[1][1], STDOUT_FILENO);
-		close(fds[0][0]);
-		close(fds[0][1]);
+		if (fds[0][0] != -1)
+			close(fds[0][0]);
+		if (fds[0][1] != -1)
+			close(fds[0][1]);
 		close(fds[1][0]);
 		close(fds[1][1]);
 		if (args[i][0] == NULL)
@@ -46,8 +48,10 @@ void	last_exec_command(char **envp, char ***args, int i, int **fds)
 		dup2(fds[1][0], STDIN_FILENO);
 		if (fds[0][1] != -1)
 			dup2(fds[0][1], STDOUT_FILENO);
-		close(fds[0][0]);
-		close(fds[0][1]);
+		if (fds[0][0] != -1)
+			close(fds[0][0]);
+		if (fds[0][1] != -1)
+			close(fds[0][1]);
 		close(fds[1][0]);
 		close(fds[1][1]);
 		if (args[i][0] == NULL)

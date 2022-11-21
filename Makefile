@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 16:15:35 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/18 17:07:03 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/21 08:50:10 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC_BONUS =	bonus/pipex_bonus.c \
 			bonus/exec_bonus.c \
 			bonus/arg_bonus.c \
 			bonus/args_bonus.c \
-			bonus/fd.c
+			bonus/fd_bonus.c
 
 ifdef BONUS
 	SRC = $(SRC_BONUS)
@@ -33,7 +33,7 @@ OBJ = ${SRC:.c=.o}
 OBJ_BONUS = ${SRC_BONUS:.c=.o}
 
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g3
 LIBFTFLAGS = -Llibft -lft
 INCLUDES = -I. -Ilibft
 
