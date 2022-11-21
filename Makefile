@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 16:15:35 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/21 08:50:10 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/21 09:28:50 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ NAME = pipex
 SRC =	mandatory/pipex.c \
 		mandatory/exec.c \
 		mandatory/arg.c \
-		mandatory/args.c
+		mandatory/args.c \
+		mandatory/fd.c
 
 SRC_BONUS =	bonus/pipex_bonus.c \
 			bonus/exec_bonus.c \

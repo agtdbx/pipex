@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:38:57 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 17:49:20 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/21 09:29:13 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*get_command_path(char **paths, char *command)
 	int		i;
 	char	*res;
 
+	if (command == NULL)
+		return (NULL);
 	i = 0;
 	while (paths != NULL && paths[i] != NULL)
 	{
