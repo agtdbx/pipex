@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:05 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/21 09:48:39 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:17:07 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,12 @@ void	check_arguments(int argc, char **argv)
 			error = 1;
 		i++;
 	}
-	if (argc != 5 || error)
+	if (error)
+	{
+		ft_putendl_fd("Empty argument", 2);
+		exit(1);
+	}
+	if (argc != 5)
 	{
 		ft_putendl_fd("Invalid arguments", 2);
 		ft_putendl_fd("Usage : ./pipex file1 \"cmd1\" \"cmd2\" file2", 2);

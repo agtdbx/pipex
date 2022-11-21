@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:22 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/21 09:30:22 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:20:28 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 // pipex_bonus.c
 void	one_free_all(int **fds, char ***args);
 void	pipex(char **envp, char ***args, int **fds, int here_doc);
+void	check_arguments2(int argc, int here_doc);
 void	check_arguments(int argc, char **argv, int here_doc);
 int		main(int argc, char **argv, char **envp);
 

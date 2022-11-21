@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:05 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/21 09:14:21 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:20:20 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,23 @@ void	pipex(char **envp, char ***args, int **fds, int here_doc)
 	}
 }
 
+void	check_arguments2(int argc, int here_doc)
+{
+	if (here_doc && argc < 6)
+	{
+		ft_putendl_fd("Not engouh arguments", 2);
+		ft_putstr_fd("Usage : ./pipex here_doc limiter \"cmd1\"", 2);
+		ft_putendl_fd(" ... \"cmdn\" file2", 2);
+		exit(1);
+	}
+	if (argc < 5)
+	{
+		ft_putendl_fd("Not engouh arguments", 2);
+		ft_putendl_fd("Usage : ./pipex file1 \"cmd1\" ... \"cmdn\" file2", 2);
+		exit(1);
+	}
+}
+
 void	check_arguments(int argc, char **argv, int here_doc)
 {
 	int	i;
@@ -69,19 +86,12 @@ void	check_arguments(int argc, char **argv, int here_doc)
 			error = 1;
 		i++;
 	}
-	if (here_doc && (argc < 6 || error))
+	if (error)
 	{
-		ft_putendl_fd("Not engouh arguments", 2);
-		ft_putstr_fd("Usage : ./pipex here_doc limiter \"cmd1\"", 2);
-		ft_putendl_fd(" ... \"cmdn\" file2", 2);
+		ft_putendl_fd("Empty argument", 2);
 		exit(1);
 	}
-	else if (argc < 5 || error)
-	{
-		ft_putendl_fd("Not engouh arguments", 2);
-		ft_putendl_fd("Usage : ./pipex file1 \"cmd1\" ... \"cmdn\" file2", 2);
-		exit(1);
-	}
+	check_arguments2(argc, here_doc);
 }
 
 int	main(int argc, char **argv, char **envp)
