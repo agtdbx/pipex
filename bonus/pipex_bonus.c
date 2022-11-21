@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:05 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 18:10:57 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/21 09:14:21 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	one_free_all(int **fds, char ***args)
 	i = 0;
 	while (fds && i < 3)
 	{
-		close(fds[i][0]);
-		close(fds[i][1]);
+		if (fds[i][0] != -1)
+			close(fds[i][0]);
+		if (fds[i][1] != -1)
+			close(fds[i][1]);
 		free(fds[i]);
 		i++;
 	}
