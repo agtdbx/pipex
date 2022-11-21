@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 16:15:35 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/21 10:22:52 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/21 10:23:42 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ INCLUDES = -I. -Ilibft
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJ)
-	@cd libft && make - j
+	@cd libft && make -j
 	@echo "╔═══════════════╗"
 	@echo "║Compiling pipex║"
 	@echo "╚═══════════════╝"
