@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:16:05 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/18 18:11:14 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/21 08:39:47 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ int	*get_filefd(int argc, char **argv, char ***args)
 
 void	one_free_all(int *pipfd, int *filefd, char ***args)
 {
-	close(pipfd[0]);
-	close(pipfd[1]);
+	if (pipfd[0] != -1)
+		close(pipfd[0]);
+	if (pipfd[0] != -1)
+		close(pipfd[1]);
 	if (filefd[0] != -1)
 		close(filefd[0]);
 	if (filefd[1] != -1)
